@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility>
+
 
 namespace make_comparable {
   template <typename T>
@@ -38,13 +40,13 @@ namespace make_comparable_private {
   class SkipComparableLessEqual : public T {
     public:
       template <typename ...Args>
-      SkipComparableLessEqual ( Args ... args ) : T (args...) {}
+      SkipComparableLessEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
   };
   template <ComparableBase T>
   class ForceComparableLessEqual : public T {
     public:
       template <typename ...Args>
-      ForceComparableLessEqual ( Args ... args ) : T (args...) {}
+      ForceComparableLessEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
       bool operator <= ( const ForceComparableLessEqual <T> &y ) const {
         return !(y < *this);
       }
@@ -54,7 +56,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableLessEqual <T> makeComparableLessEqual ( T x );
   template <typename T>
-  using MakeComparableLessEqual = decltype (makeComparableLessEqual (T ()));
+  using MakeComparableLessEqual = decltype (makeComparableLessEqual (std::declval<T>()));
 }
 
 
@@ -64,13 +66,13 @@ namespace make_comparable_private {
   class SkipComparableMore : public T {
     public:
       template <typename ...Args>
-      SkipComparableMore ( Args ... args ) : T (args...) {}
+      SkipComparableMore ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
   };
   template <ComparableBase T>
   class ForceComparableMore : public T {
     public:
       template <typename ...Args>
-      ForceComparableMore ( Args ... args ) : T (args...) {}
+      ForceComparableMore ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
       bool operator > ( const ForceComparableMore <T> &y ) const {
         return (y < *this);
       }
@@ -80,7 +82,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableMore <T> makeComparableMore ( T x );
   template <typename T>
-  using MakeComparableMore = decltype (makeComparableMore (T ()));
+  using MakeComparableMore = decltype (makeComparableMore (std::declval<T>()));
 }
 
 
@@ -90,13 +92,13 @@ namespace make_comparable_private {
   class SkipComparableMoreEqual : public T {
     public:
       template <typename ...Args>
-      SkipComparableMoreEqual ( Args ... args ) : T (args...) {}
+      SkipComparableMoreEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
   };
   template <ComparableBase T>
   class ForceComparableMoreEqual : public T {
     public:
       template <typename ...Args>
-      ForceComparableMoreEqual ( Args ... args ) : T (args...) {}
+      ForceComparableMoreEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
       bool operator >= ( const ForceComparableMoreEqual <T> &y ) const {
         return !(*this < y);
       }
@@ -106,7 +108,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableMoreEqual <T> makeComparableMoreEqual ( T x );
   template <typename T>
-  using MakeComparableMoreEqual = decltype (makeComparableMoreEqual (T ()));
+  using MakeComparableMoreEqual = decltype (makeComparableMoreEqual (std::declval<T>()));
 }
 
 
@@ -116,13 +118,13 @@ namespace make_comparable_private {
   class SkipComparableEqual : public T {
     public:
       template <typename ...Args>
-      SkipComparableEqual ( Args ... args ) : T (args...) {}
+      SkipComparableEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
   };
   template <ComparableBase T>
   class ForceComparableEqual : public T {
     public:
       template <typename ...Args>
-      ForceComparableEqual ( Args ... args ) : T (args...) {}
+      ForceComparableEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
       bool operator == ( const ForceComparableEqual <T> &y ) const {
         return !(*this < y) && !(y < *this);
       }
@@ -132,7 +134,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableEqual <T> makeComparableEqual ( T x );
   template <typename T>
-  using MakeComparableEqual = decltype (makeComparableEqual (T ()));
+  using MakeComparableEqual = decltype (makeComparableEqual (std::declval<T>()));
 }
 
 
@@ -142,13 +144,13 @@ namespace make_comparable_private {
   class SkipComparableNotEqual : public T {
     public:
       template <typename ...Args>
-      SkipComparableNotEqual ( Args ... args ) : T (args...) {}
+      SkipComparableNotEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
   };
   template <ComparableBase T>
   class ForceComparableNotEqual : public T {
     public:
       template <typename ...Args>
-      ForceComparableNotEqual ( Args ... args ) : T (args...) {}
+      ForceComparableNotEqual ( Args&& ... args ) : T (std::forward<Args>(args)...) {}
       bool operator != ( const ForceComparableNotEqual <T> &y ) const {
         return *this < y || y < *this;
       }
@@ -158,7 +160,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableNotEqual <T> makeComparableNotEqual ( T x );
   template <typename T>
-  using MakeComparableNotEqual = decltype (makeComparableNotEqual (T ()));
+  using MakeComparableNotEqual = decltype (makeComparableNotEqual (std::declval<T>()));
 }
 
 

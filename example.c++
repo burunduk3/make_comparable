@@ -9,7 +9,7 @@ class RationalStub {
   private:
     int p, q;
   public:
-    RationalStub ( int _p = 0, int _q = 1 ) : p (_p), q (_q) {
+    RationalStub ( int _p, int _q) : p (_p), q (_q) {
       int d = gcd (p, q);
       p /= d, q /= d;
     }

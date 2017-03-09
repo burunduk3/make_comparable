@@ -56,7 +56,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableLessEqual <T> makeComparableLessEqual ( T x );
   template <typename T>
-  using MakeComparableLessEqual = decltype (makeComparableLessEqual (T ()));
+  using MakeComparableLessEqual = decltype (makeComparableLessEqual (std::declval<T>()));
 }
 
 
@@ -82,7 +82,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableMore <T> makeComparableMore ( T x );
   template <typename T>
-  using MakeComparableMore = decltype (makeComparableMore (T ()));
+  using MakeComparableMore = decltype (makeComparableMore (std::declval<T>()));
 }
 
 
@@ -108,7 +108,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableMoreEqual <T> makeComparableMoreEqual ( T x );
   template <typename T>
-  using MakeComparableMoreEqual = decltype (makeComparableMoreEqual (T ()));
+  using MakeComparableMoreEqual = decltype (makeComparableMoreEqual (std::declval<T>()));
 }
 
 
@@ -134,7 +134,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableEqual <T> makeComparableEqual ( T x );
   template <typename T>
-  using MakeComparableEqual = decltype (makeComparableEqual (T ()));
+  using MakeComparableEqual = decltype (makeComparableEqual (std::declval<T>()));
 }
 
 
@@ -160,7 +160,7 @@ namespace make_comparable_private {
   template <ComparableBase T>
   ForceComparableNotEqual <T> makeComparableNotEqual ( T x );
   template <typename T>
-  using MakeComparableNotEqual = decltype (makeComparableNotEqual (T ()));
+  using MakeComparableNotEqual = decltype (makeComparableNotEqual (std::declval<T>()));
 }
 
 

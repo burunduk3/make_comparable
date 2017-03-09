@@ -1,13 +1,13 @@
 # Basics
 
-When you make a comparable type you usually only need to implement `operator <` for it: c++ std::sort and container use this one only.
-But when you want to you comparison in other places, you want all operators for easy of use. Of course, you do not want to implement them by yourself,
+When you make a comparable type you usually only need to implement `operator <`: c++ std::sort and containers use this operator only.
+But when you compare your type in other places, you want all operators for easy of use. Of course, you do not want to implement them by yourself,
 you want them to be implemented using your `operator <`. Well, here you are.
 
 # MakeComparable
 
-MakeComparable is a c++ template than from a type with `operator <` (and possibly some other comparison operators) new type with full support of comparison: `<`, `<=`, `>`, `>=`, `==` and `!=`.
-C++ concepts and SFINAE made possible to use your operator when possible and make new only for missing ones.
+MakeComparable is a c++ template than from a type with `operator <` (and possibly some other comparison operators) makes new type with full support of comparison: `<`, `<=`, `>`, `>=`, `==` and `!=`.
+C++ concepts and SFINAE make possible to use your existing operators and make new only for missing ones: for example, you may want to explicitly implement `operator ==` and `operator !=` for performance reasons.
 
 
 # Requirements
